@@ -1,21 +1,21 @@
-<!DOCTYPE html>
+{% extends 'rango/base.html' %}
 {% load staticfiles%}
-<html>
-<head>
-    <title>About</title>
-</head>
-<body>
+{% block title_block %}
+    About
+{% endblock %}
+
+{% block body_block%}
+
     <h1>This Template has been put together by Ken Diasilua</h1>
     <div>
         Ugandan Knuckles and a Cat!<br />
         <strong>{{boldmessage}}</strong>
     </div>
     <div>
-        <a href="/rango/">Index</a><br />
         <img src="{% static "images/knuckles.jpg" %}"
         alt ="Highly detailed image of January's most intellectual and influential meme" />
-        <img src= "{{MEDIA_URL}}cat.jpg"/>
+        <img src= "{{MEDIA_URL}}cat.jpg"
+        alt="A mighty feline"/>
 
     </div>
-</body>
-</html>
+{% endblock %}
