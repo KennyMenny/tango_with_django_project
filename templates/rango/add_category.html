@@ -6,9 +6,10 @@
 {% endblock %}
 
     {% block body_block %}
+    {% if user.is_authenticated %}
         <h1>Add a Category</h1>
         <div>
-            <form id="category_form" method="post" action="/rango/add_category/">
+            <form id="category_form" method="post" action="{% url 'add_category' %}">
                 {% csrf_token %}
                 {% for hidden in form.hidden_fields %}
                     {{ hidden }}
@@ -21,4 +22,7 @@
                 <input type="submit" name="submit" value="Create Category" />
             </form>
         </div>
+    {% else %}
+        Please sign in to add categories.
+    {% endif %}
     {% endblock %}
