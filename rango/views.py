@@ -82,6 +82,7 @@ def show_category(request, category_name_slug):
     return render(request, 'rango/category.html', context_dict)
 
 def index(request):
+    request.session.set_test_cookie()
     category_list = Category.objects.order_by('-likes')[:5]
     page_list = Page.objects.order_by('-views')[:5]
     context_dict = {'categories': category_list, 'pages':page_list}
@@ -113,11 +114,16 @@ def visitor_cookie_handler(request):
     request.session['visits'] = visits
 
 def about(request):
-    context_dict = {'boldmessage': "This is a bold message."}
+    if request.session.test_cookie_worked():
+        print("TEST COOKIE WORKED!")
+        request.session.delete_test_cookie()
+
+    context_dict = {}
     visitor_cookie_handler(request)
     context_dict['visits'] = request.session['visits']
+    context_dict['last_visit'] = request.session['last_visit']
 
-    response = render(request, 'rango/about.html', context_dict)
+    response = render(request, 'rango/about.html', context=context_dict)
     return response
 
 

@@ -1,6 +1,5 @@
 {% extends 'rango/base.html' %}
 {% load staticfiles%}
-
 {% block title_block %}
     About
 {% endblock %}
@@ -10,14 +9,14 @@
     <h1>This Template has been put together by Ken Diasilua</h1>
 
     <div>
-        <p>visits: {{visits}}</p>
+        <p> visits: {{ visits }}</p>
         Ugandan Knuckles and a Cat!<br />
         <strong>{{boldmessage}}</strong>
     </div>
     <div>
         <img src="{% static "images/knuckles.jpg" %}"
         alt ="Highly detailed image of January's most intellectual and influential meme" />
-        <img src= "/media/cat.jpg/"
+        <img src= "{{MEDIA_URL}}cat.jpg"
         alt="A mighty feline"/>
     </div>
 {% endblock %}
